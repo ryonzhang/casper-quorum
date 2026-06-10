@@ -21,24 +21,7 @@ approved. The system is built to be **honest by construction**:
 
 ## Architecture
 
-```
-                        ┌──────────────────────────── off-chain ───────────────────────────┐
- proposal               │                                                                   │
- ("rotate 20% into      │  ORACLE ──▶ RISK ──▶ CALIBRATION ──▶ REVIEWER                     │
-  tokenized treasuries")│  evidence   deterministic  calibrated p,   policy gate:           │
- ───────────────────▶   │  packets:   risk engine:   confidence,     APPROVE / TRIM /       │
-                        │  MCP reads, vol, HHI,      fractional-     ESCALATE /             │
-                        │  x402-paid  drawdown       Kelly budget,   ABSTAIN_UPHELD         │
-                        │  data feeds bound          ABSTAIN logic                          │
-                        └──────────────────────────────┬────────────────────────────────────┘
-                                                       │ signed txs (casper-js-sdk v5)
-                        ┌──────────────────────────────▼──────────────────── on-chain ──────┐
-                        │  DecisionLog ◀────────── Treasury ──────────▶ AgentRegistry       │
-                        │  audit trail: verdict,   reallocate() only   agent ids +          │
-                        │  evidence & deliberation runs for APPROVED   reputation EWMA      │
-                        │  hashes, CES events      decision ids        from realized calls  │
-                        └────────────────────────────────────────────────────────────────────┘
-```
+![Quorum architecture](docs/architecture.png)
 
 ### The four agents
 
