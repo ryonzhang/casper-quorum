@@ -91,6 +91,25 @@ npm run dashboard # http://localhost:4400 — renders the deliberations
 3. **ESCALATE** — a momentum chase into 75% CSPR breaches the drawdown-bound and
    concentration gates; routed to humans, funds untouched.
 
+## Live on Casper Testnet
+
+Deployed and producing transactions on chain `casper-test`:
+
+| Contract | Package hash |
+|---|---|
+| DecisionLog | `hash-e45c005c6dfeb2780a1db061197791f2853d4904caefaa596b4bb05bddc0b90c` |
+| Treasury | `hash-6a60d5773f0a42875405327dbf6388d7d618ad5507726083434fd1f1eb71b485` |
+| AgentRegistry | `hash-32dfbfbf6e33629d8e41bb8de5167294d3f3dca63505eee2c1ba8315c9c85af0` |
+
+Sample proof transactions (full list in [docs/CHECKLIST.md](docs/CHECKLIST.md)):
+an APPROVE deliberation recorded via
+[`record_decision`](https://testnet.cspr.live/transaction/050f90abf3fc16f3302b3d41b8b1dfa96620c29e666f980e400f17d6b96f4150)
+and executed via
+[`Treasury.reallocate`](https://testnet.cspr.live/transaction/5bfb843fe57f7f2c73cf87d73bd07084087dad28eb6fc2da302882f650ab4787);
+an [ABSTAIN](https://testnet.cspr.live/transaction/dd42ab51f87569b07129bafd472df9be2e5d3d1c35437a9bdd5e22a540db625f)
+and an [ESCALATE](https://testnet.cspr.live/transaction/d523a9b0fbf77b300bf074475c830b965af534e27e4d21431e24165cf9723ee5)
+recorded with zero funds moved.
+
 ## Casper Testnet (transaction-producing path)
 
 Full walkthrough: [docs/DEPLOY.md](docs/DEPLOY.md). Summary:

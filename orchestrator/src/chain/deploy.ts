@@ -35,8 +35,8 @@ const {
   SessionBuilder,
 } = casperSdk;
 
-const HERE = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.resolve(HERE, "..", "..");
+const HERE = path.dirname(fileURLToPath(import.meta.url)); // orchestrator/src/chain
+const ROOT = path.resolve(HERE, "..", "..", ".."); // repo root
 const WASM_DIR = path.join(ROOT, "contracts", "wasm");
 
 const INSTALL_PAYMENT = Number(process.env.QUORUM_DEPLOY_PAYMENT ?? 350_000_000_000); // 350 CSPR
