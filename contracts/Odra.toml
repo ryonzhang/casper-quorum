@@ -1,0 +1,8 @@
+[[contracts]]
+fqn = "quorum_contracts::decision_log::DecisionLog"
+
+[[contracts]]
+fqn = "quorum_contracts::treasury::Treasury"
+
+[[contracts]]
+fqn = "quorum_contracts::agent_registry::AgentRegistry"

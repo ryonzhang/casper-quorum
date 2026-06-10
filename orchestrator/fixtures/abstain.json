@@ -1,0 +1,32 @@
+{
+  "scenario": "abstain",
+  "proposal": {
+    "intent": "Tilt 10% of NAV from CSPR into tokenized treasuries on mixed macro chatter.",
+    "target": { "CSPR": 0.4, "mUSDY": 0.4, "mLP": 0.2 },
+    "horizonDays": 30,
+    "payoffRatio": 1.2
+  },
+  "market": {
+    "sleeves": [
+      { "id": "CSPR", "annualVol": 0.85, "currentWeight": 0.5 },
+      { "id": "mUSDY", "annualVol": 0.06, "currentWeight": 0.3 },
+      { "id": "mLP", "annualVol": 0.45, "currentWeight": 0.2 }
+    ],
+    "correlations": [
+      [1, 0.05, 0.6],
+      [0.05, 1, 0.1],
+      [0.6, 0.1, 1]
+    ]
+  },
+  "signals": [
+    { "source": "rwa-yield-monitor:tbill-spread", "direction": 1, "strength": 0.7, "ageSeconds": 1200 },
+    { "source": "cspr.trade:cspr-orderflow-imbalance", "direction": -1, "strength": 0.7, "ageSeconds": 600 },
+    { "source": "cspr.trade:cspr-30d-momentum", "direction": 1, "strength": 0.65, "ageSeconds": 4800 },
+    { "source": "cspr.trade:funding-rate", "direction": -1, "strength": 0.7, "ageSeconds": 900 },
+    { "source": "onchain:whale-outflow-tracker", "direction": 1, "strength": 0.7, "ageSeconds": 5400 },
+    { "source": "onchain:dex-liquidity-depth", "direction": -1, "strength": 0.65, "ageSeconds": 1500 },
+    { "source": "macro:stablecoin-rotation-index", "direction": 1, "strength": 0.7, "ageSeconds": 5000 },
+    { "source": "vol-desk:implied-vs-realized", "direction": -1, "strength": 0.7, "ageSeconds": 1100 },
+    { "source": "macro:risk-appetite-gauge", "direction": 1, "strength": 0.6, "ageSeconds": 5200 }
+  ]
+}

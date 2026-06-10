@@ -1,0 +1,19 @@
+# Node
+node_modules/
+dist/
+
+# Rust
+target/
+
+# Secrets & local state — never commit keys
+.env
+keys/
+*.pem
+orchestrator/runs/
+
+# Build artifacts (rebuilt by `cargo odra build`; kept out of the repo)
+contracts/wasm/
+
+# Editor/OS noise
+.DS_Store
+Thumbs.db

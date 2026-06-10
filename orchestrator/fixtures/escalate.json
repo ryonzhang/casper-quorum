@@ -1,0 +1,33 @@
+{
+  "scenario": "escalate",
+  "proposal": {
+    "intent": "Momentum is screaming: concentrate 75% of NAV into CSPR to ride the breakout.",
+    "target": { "CSPR": 0.75, "mUSDY": 0.1, "mLP": 0.15 },
+    "horizonDays": 30,
+    "payoffRatio": 2.0
+  },
+  "market": {
+    "sleeves": [
+      { "id": "CSPR", "annualVol": 0.85, "currentWeight": 0.5 },
+      { "id": "mUSDY", "annualVol": 0.06, "currentWeight": 0.3 },
+      { "id": "mLP", "annualVol": 0.45, "currentWeight": 0.2 }
+    ],
+    "correlations": [
+      [1, 0.05, 0.6],
+      [0.05, 1, 0.1],
+      [0.6, 0.1, 1]
+    ]
+  },
+  "signals": [
+    { "source": "cspr.trade:cspr-orderflow-imbalance", "direction": 1, "strength": 0.95, "ageSeconds": 300 },
+    { "source": "cspr.trade:cspr-30d-momentum", "direction": 1, "strength": 0.9, "ageSeconds": 600 },
+    { "source": "cspr.trade:funding-rate", "direction": 1, "strength": 0.85, "ageSeconds": 480 },
+    { "source": "onchain:whale-outflow-tracker", "direction": 1, "strength": 0.9, "ageSeconds": 900 },
+    { "source": "onchain:dex-liquidity-depth", "direction": 1, "strength": 0.9, "ageSeconds": 1200 },
+    { "source": "macro:stablecoin-rotation-index", "direction": 1, "strength": 0.85, "ageSeconds": 1500 },
+    { "source": "macro:risk-appetite-gauge", "direction": 1, "strength": 0.9, "ageSeconds": 1800 },
+    { "source": "vol-desk:implied-vs-realized", "direction": 1, "strength": 0.9, "ageSeconds": 700 },
+    { "source": "vol-desk:skew-signal", "direction": 1, "strength": 0.95, "ageSeconds": 1000 },
+    { "source": "sentiment:social-buzz-index", "direction": 1, "strength": 0.9, "ageSeconds": 2000 }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "scenario": "approve",
+  "proposal": {
+    "intent": "De-risk the treasury: rotate 20% of NAV out of CSPR into tokenized short-duration treasuries (mUSDY) while RWA yields are attractive.",
+    "target": { "CSPR": 0.3, "mUSDY": 0.5, "mLP": 0.2 },
+    "horizonDays": 30,
+    "payoffRatio": 1.5
+  },
+  "market": {
+    "sleeves": [
+      { "id": "CSPR", "annualVol": 0.85, "currentWeight": 0.5 },
+      { "id": "mUSDY", "annualVol": 0.06, "currentWeight": 0.3 },
+      { "id": "mLP", "annualVol": 0.45, "currentWeight": 0.2 }
+    ],
+    "correlations": [
+      [1, 0.05, 0.6],
+      [0.05, 1, 0.1],
+      [0.6, 0.1, 1]
+    ]
+  },
+  "signals": [
+    { "source": "rwa-yield-monitor:tbill-spread", "direction": 1, "strength": 0.9, "ageSeconds": 420 },
+    { "source": "rwa-yield-monitor:musdy-nav-premium", "direction": 1, "strength": 0.85, "ageSeconds": 600 },
+    { "source": "cspr.trade:cspr-orderflow-imbalance", "direction": 1, "strength": 0.9, "ageSeconds": 300 },
+    { "source": "cspr.trade:cspr-30d-momentum", "direction": 1, "strength": 0.8, "ageSeconds": 900 },
+    { "source": "cspr.trade:funding-rate", "direction": 1, "strength": 0.9, "ageSeconds": 480 },
+    { "source": "onchain:whale-outflow-tracker", "direction": 1, "strength": 0.95, "ageSeconds": 1200 },
+    { "source": "onchain:dex-liquidity-depth", "direction": 1, "strength": 0.85, "ageSeconds": 1500 },
+    { "source": "macro:stablecoin-rotation-index", "direction": 1, "strength": 0.9, "ageSeconds": 1800 },
+    { "source": "macro:risk-appetite-gauge", "direction": 1, "strength": 0.85, "ageSeconds": 2100 },
+    { "source": "vol-desk:implied-vs-realized", "direction": 1, "strength": 0.95, "ageSeconds": 700 },
+    { "source": "vol-desk:skew-signal", "direction": 1, "strength": 0.9, "ageSeconds": 1100 },
+    { "source": "treasury-board:liquidity-runway", "direction": 1, "strength": 0.95, "ageSeconds": 2400 }
+  ]
+}
